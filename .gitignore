@@ -1,4 +1,6 @@
 # Lo nuestro
+*.zip
+.htaccess
 *.pdf
 cache/
 conexion.php

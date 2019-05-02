@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content">
+    <section>
+      {% for evento in eventos %}
+        <a href="eventos.php?evento={{ evento.id }}">
+          <article class="evento">
+            <img src="{{ evento.imagen }}" alt="Imagen de {{ evento.nombre }}">
+            <h3>{{ evento.nombre }}</h3>
+          </article>
+        </a>
+      {% endfor %}
+      </section>
+  </div>
+{% endblock %}

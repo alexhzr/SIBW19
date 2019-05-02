@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content-evento">
+    <article class="detalle-evento">
+    <p class="titulo-evento">{{ evento.nombre }}</p>
+    <p class="organizador">{{ evento.organizador }}, <span class="fecha">{{ evento.fecha }}</span></p>
+
+    <img src="{{ evento.imagen }}" alt="Imagen de {{ evento.nombre }}">
+
+    <p>{{ evento.descripcion }}</p>
+
+    <div id="compartir">
+        <p>Compartir</p>
+        <a href="evento_imprimir.html"><img src="img/redes/imprimir.png"></a>
+        <a href="https://www.facebook.com/sala.fender"><img src="img/redes/facebook.png"></a>
+        <a href="https://www.twitter.com/salafender"><img src="img/redes/twitter.png"></a>
+        <a href="https://www.pinterest.com/fender.conciertos"><img src="img/redes/pinterest.png"></a>
+        <a href="https://www.instagram.com/sala.fender"><img src="img/redes/instagram-c.png"></a>
+
+        <div id="boton-mostrar-comentarios">
+            <img id="mostrar_comentarios" onclick="ParaComentarios();return false;" alt="Mostrar Comentarios" src="img/comentarios.png" />
+        </div>
+    </div>
+</article>
+  </div>
+{% endblock %}
