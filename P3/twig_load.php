@@ -7,7 +7,7 @@
 
   $evento = new Evento();
   $tag = new Tag();
-  $proximosEventos = $evento->getAll();
+  $proximosEventos = $evento->getProximosEventos();
   $tags = $tag->getAll();
 
 	$loader = new Twig_Loader_Filesystem(VIEW_PATH);

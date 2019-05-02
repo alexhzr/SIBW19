@@ -2,8 +2,8 @@
 
 {% block contenido %}
   <div id="main-content">
-    <section class="error">
-        <p>{{ mensajeError }}</p>
+    <section class="{{ estado }}">
+        <p>{{ mensaje }}</p>
     </section>
   </div>
 {% endblock %}

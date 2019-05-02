@@ -2,7 +2,7 @@
 require_once  __DIR__ . "/Modelo.php";
 require_once("conexion.php");
 
-class Evento extends Modelo {
+class Comentario extends Modelo {
 
     private $autor;
     private $email;
@@ -10,11 +10,23 @@ class Evento extends Modelo {
     private $evento;
     private $fecha;
     private $ip;
+    private $avatar;
 
 
     public function __construct() {
 		parent::__construct();
         $this->table = "comentario";
+    }
+
+    public function asignarValores($autor, $email, $texto, $evento, $fecha, $ip, $avatar) {
+      $this->autor = $autor;
+      $this->email = $email;
+      $this->texto = $texto;
+      $this->evento = $evento;
+      $this->fecha = $fecha;
+      $this->ip = $ip;
+      $this->avatar = $avatar;
+
     }
 
 
@@ -66,14 +78,30 @@ class Evento extends Modelo {
         $this->autor = $ip;
     }
 
+    public function getComentariosEvento($evento) {
+      $consulta = conexion()->prepare("SELECT * FROM " . $this->table . " WHERE evento=".$evento.";");
+      $result = $consulta->execute(array(
+          "autor" => $this->autor,
+          "email" => $this->email,
+          "texto" => $this->texto,
+          "avatar" => $this->avatar,
+          "fecha" => $this->fecha,
+          "evento" => $this->evento,
+          "ip" => $this->ip
+      ));
+
+      $result = $consulta->fetchAll();
+      return $result; //true if OK.
+    }
 
     public function guardar(){
 
-        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (autor, email, texto, fecha, evento, ip)
-                                        VALUES (:autor, :email, :texto, :fecha, :evento, :ip)");
+        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (autor, email, avatar, texto, fecha, evento, ip)
+                                        VALUES (:autor, :email, :avatar, :texto, :fecha, :evento, :ip)");
         $result = $consulta->execute(array(
             "autor" => $this->autor,
             "email" => $this->email,
+            "avatar" => $this->avatar,
             "texto" => $this->texto,
             "fecha" => $this->fecha,
             "evento" => $this->evento,

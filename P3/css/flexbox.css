@@ -358,3 +358,18 @@ input:focus {
 }
 
 .img-compartir {}
+
+.video {
+  margin-left: 13em;
+  margin-top: 1em;
+}
+
+.ok, .error {
+  border-radius: 10px;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding: 2em;
+}
+
+.ok { background-color: #deefb1; }
+.error { background-color: #f4c1ab; }

@@ -8,6 +8,7 @@
 
     </script>
     <title>Sala Fender</title>
+    {% block header %}{% endblock %}
 </head>
 <body>
     <header>
@@ -25,8 +26,6 @@
     </header>
     <div id="content">
         <aside>
-          <input type="button" onClick="openWindow('Twitter', 'img/evento1.jpg')" value="Click Me">
-          <input type="button" onClick="openWindow(Faceboo, img/evento2.jpg)" value="Click Me">
               <h3>Próximos eventos</h3>
               <ul id="proximos-eventos">
                 {% for proxEvento in proximosEventos %}

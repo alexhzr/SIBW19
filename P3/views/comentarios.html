@@ -1,0 +1,44 @@
+<section id="comentarios" class='some-page-wrapper' style="display:none;">
+    <ul>
+        {% for comentario in comentarios %}
+        <li>
+            <div class='row'>
+                <div class='column'>
+                    <div class='imagen-comentario'>
+                        <img src="img/comentarios/{{ comentario.avatar }}"/>
+                    </div>
+                </div>
+                <div class='double-column'>
+                    <div class='contenido-comentario'>
+                        <p class="autor_comentario">{{ comentario.autor }}</p>
+                        <p class="fecha_comentario">{{ comentario.fecha }}</p>
+                        <p class="ip_comentario">{{ comentario.ip }}</p>
+                        <p class="texto_comentario">{{ comentario.texto }}</p>
+                  </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+        <li>
+            <form action="eventos.php" method="post">
+              <input type="hidden" name="nuevo_comentario" value="nuevo_comentario">
+              <input type="hidden" name="evento" value="{{ evento.id }}">
+                <fieldset>
+                <legend>Nuevo Comentario:</legend>
+                <div>
+                    <input type="text" name="nombre" placeholder="Tu nombre" required/>
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Tu Email" required/>
+                </div>
+                <div>
+                    <textarea name="texto" placeholder="Mensaje" required></textarea>
+                </div>
+                <input type="submit" name="Enviar" value="Enviar comentario">
+            </fieldset>
+            </form>
+        </li>
+    </ul>
+
+</section>

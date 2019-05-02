@@ -59,7 +59,7 @@ function listenerPalabrotas() {
 var w = 480, h = 340;
 
 
-function openWindow(redSocial, img) {
+function openWindow(redSocial, img, tituloEvento) {
   if (document.getElementById) {
      w = screen.availWidth;
      h = screen.availHeight;
@@ -77,6 +77,6 @@ function openWindow(redSocial, img) {
 
   msgWindow.document.write("<h2>Compartir en "+redSocial+"</h2>"+
     "<div'><img style='width:250px;height:250px;' src='"+img+"'/>"+
-    "<textarea style='margin-bottom: 7em;margin-left: 4em;' rows='4' cols='50'> - via @salafender </textarea>"+
+    "<textarea style='margin-bottom: 7em;margin-left: 4em;' rows='4' cols='50'>"+tituloEvento+"- via @salafender </textarea>"+
     "<INPUT style='padding:1em; margin-left:30em;' TYPE='button' VALUE='Compartir'onClick='window.close();'></FORM></div>");
   }

@@ -13,8 +13,8 @@
     <div id="compartir">
         <p>Compartir</p>
         <a href="evento_imprimir.html"><img src="img/redes/imprimir.png"></a>
-        <a href="https://www.facebook.com/sala.fender"><img src="img/redes/facebook.png"></a>
-        <a href="https://www.twitter.com/salafender"><img src="img/redes/twitter.png"></a>
+        <a onclick="openWindow('Facebook', '{{ evento.imagen }}')"><img src="img/redes/facebook.png"></a>
+        <a onclick="openWindow('Twitter', '{{ evento.imagen }}')"><img src="img/redes/twitter.png"></a>
         <a href="https://www.pinterest.com/fender.conciertos"><img src="img/redes/pinterest.png"></a>
         <a href="https://www.instagram.com/sala.fender"><img src="img/redes/instagram-c.png"></a>
 
@@ -22,6 +22,7 @@
             <img id="mostrar_comentarios" onclick="ParaComentarios();return false;" alt="Mostrar Comentarios" src="img/comentarios.png" />
         </div>
     </div>
-</article>
+    </article>
+    {% include "comentarios.html" %}
   </div>
 {% endblock %}
