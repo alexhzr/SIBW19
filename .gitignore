@@ -143,18 +143,6 @@ fabric.properties
 # Ignore all local history of files
 .history
 
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.xhtml
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
