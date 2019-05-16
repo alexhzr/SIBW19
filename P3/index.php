@@ -3,7 +3,7 @@
 	$eventos;
 
 	if (isset($_GET['tag'])) {
-		$eventos = $evento->getEventosPorTag($tag);
+		$eventos = $evento->getEventosPorTag($_GET['tag']);
 
 	} else {
 		$eventos = $evento->getAll();

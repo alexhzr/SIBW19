@@ -11,5 +11,5 @@
 	$proximosEventos = $evento->getAll();
 
 	$template = $twig->load("mostrar_comunicado.html");
-	echo $template->render(['comunicado' => $infoNosotros, 'proximosEventos' => $proximosEventos]);
+	echo $template->render(['comunicado' => $infoNosotros, 'proximosEventos' => $proximosEventos, 'tags' => $tags]);
 ?>
