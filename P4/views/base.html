@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/flexbox.css">
+    <script type="text/javascript" src="js/practica2.js">
+
+    </script>
+    <title>Sala Fender</title>
+    {% block header %}{% endblock %}
+</head>
+<body>
+    <header>
+        <figure class="header-logo">
+            <img src="img/LOGO-FENDER.png" />
+        </figure>
+
+        <h1 class="titulo-header">Sala Fender</h1>
+
+        <nav class="topnav">
+            <a class="active" href="index.php">Inicio</a>
+            <a href="eventos.php?evento=1">Evento</a>
+            <a href="eventos.php?evento=1&imprimir=1">Imprimir</a>
+            {% if usuario is defined %}
+              <a href="#">Bienvenid@, {{ usuario.nombre }}</a>
+              <a id="a-logout" href="logout.php">Salir</a>
+            {% else %}
+              <a id="a-login" href="login.php">Login</a>
+              <a id="a-registrar" href="registrar.php">Registrarse</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div id="content">
+      {% block lateral %}
+        <aside>
+              <h3>Próximos eventos</h3>
+              <ul id="proximos-eventos">
+                {% for proxEvento in proximosEventos %}
+                  <li><a href="eventos.php?evento={{ proxEvento.id }}">{{ proxEvento.nombre }}</a>, {{ proxEvento.fecha }}</li>
+                {% endfor %}
+
+              </ul>
+
+              <h3>Tipos de eventos</h3>
+              <ul id="tags">
+                {% for tag in tags %}
+                  <li><a href="index.php?tag={{ tag.id }}">{{ tag.nombre }}</a></li>
+                {% endfor %}
+
+              </ul>
+
+                <h3>Patrocinadores</h3>
+                <ul id="patrocinadores">
+                    <li><img src="img/patrocinadores/audi.png" /></li>
+                    <li><img src="img/patrocinadores/logoAlhambraHome.png" /></li>
+                    <li><img src="img/patrocinadores/pionner.png" /></li>
+                    <li><img src="img/patrocinadores/pringels.png" /></li>
+                </ul>
+
+                <h3>¡Síguenos!</h3>
+                <ul id="social-media">
+                <li><img src="img/redes/facebook-logo.png"> sala.fender</li>
+                <li><img src="img/redes/instagram.png"> sala.fender</li>
+                <li><img src="img/redes/twitter-logo-silhouette.png"> @salafender</li>
+                </ul>
+        </aside>
+        {% endblock %}
+
+        {% block contenido %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2019 Sala Fender | <a href="acerca.php">Aviso legal</a> </p>
+        <p>Alejandro Manuel Hernández Recio y Francisco Miguel Toledo Aguilera</p>
+    </footer>
+</body>
+</html>

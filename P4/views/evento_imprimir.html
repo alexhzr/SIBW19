@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/estilos_imprimir.css">
+    <title></title>
+  </head>
+  <body>
+    <img class="logo-izda" src="img/LOGO-FENDER.png"/>
+    <div id="main-content-evento">
+      <article class="detalle-evento">
+      <h1>{{ evento.nombre }}</h1>
+      <h3>Organiza {{ evento.organizador }}, <span class="fecha">{{ evento.fecha }}</span></h3>
+
+      <img class="imagen-imprimir" src="{{ evento.imagen }}" alt="Imagen de {{ evento.nombre }}">
+
+      <p class="newspaper">{{ evento.descripcion }}</p>
+
+      <a href="https://www.instagram.com/p/BwcSIlMn7XJ/">Enlace al vídeo</a>
+      </article>
+    </div>
+    <footer>
+        <p>&copy; 2019 Sala Fender | <a href="acerca.php">Aviso legal</a> </p>
+        <p>Alejandro Manuel Hernández Recio y Francisco Miguel Toledo Aguilera</p>
+    </footer>
+  </body>
+</html>

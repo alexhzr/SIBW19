@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block header %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+{% endblock %}
+
+{% block contenido %}
+  <div id="main-content-evento">
+    <article class="detalle-evento">
+    <p class="titulo-evento">{{ evento.nombre }}</p>
+    <p class="organizador">{{ evento.organizador }}, <span class="fecha">{{ evento.fecha }}</span></p>
+
+    <img src="{{ evento.imagen }}" alt="Imagen de {{ evento.nombre }}">
+
+    <p>{{ evento.descripcion }}</p>
+
+    <h3>Galería del concierto</h3>
+
+    <div ID="Enter Shikari @ Sala Fender, 17 Abril 2019" data-nanogallery2='{
+        "itemsBaseURL": "http://localhost/SIBW19/P3/img/galeria/",
+        "thumbnailWidth": "200",
+        "colorScheme": {
+          "thumbnail": {
+            "background": "rgba(68,68,68,0)"
+          }
+        },
+        "thumbnailHoverEffect2": "imageScaleIn80|imageSepiaOff|labelAppear75",
+        "thumbnailAlignment": "center"
+      }'>
+      <a href="1.jpg" data-ngthumb="1.jpg" data-ngdesc="">Enter Shikari 1</a>
+      <a href="2.jpg" data-ngthumb="2.jpg" data-ngdesc="">Enter Shikari 2</a>
+      <a href="3.jpg" data-ngthumb="3.jpg" data-ngdesc="">Enter Shikari 3</a>
+      <a href="4.jpg" data-ngthumb="4.jpg" data-ngdesc="">Enter Shikari 4</a>
+      <a href="5.jpg" data-ngthumb="5.jpg" data-ngdesc="">Enter Shikari 5</a>
+      <a href="6.jpg" data-ngthumb="6.jpg" data-ngdesc="">Enter Shikari 6</a>
+      <a href="7.jpg" data-ngthumb="7.jpg" data-ngdesc="">Enter Shikari 7</a>
+      <a href="8.jpg" data-ngthumb="8.jpg" data-ngdesc="">Enter Shikari 8</a>
+
+    </div>
+
+    <iframe class="video" width="420" height="315"
+      src="img/galeria/video.mp4">
+    </iframe>
+
+    <div id="compartir">
+        <p>Compartir</p>
+        <a href="eventos.php?imprimir=1&evento={{ evento.id }}"><img src="img/redes/imprimir.png"></a>
+        <a onclick="openWindow('Facebook', '{{ evento.imagen }}', '{{ evento.nombre }}')"><img src="img/redes/facebook.png"></a>
+        <a onclick="openWindow('Twitter', '{{ evento.imagen }}', '{{ evento.nombre }}')"><img src="img/redes/twitter.png"></a>
+        <a href="https://www.pinterest.com/fender.conciertos"><img src="img/redes/pinterest.png"></a>
+        <a href="https://www.instagram.com/sala.fender"><img src="img/redes/instagram-c.png"></a>
+
+        <div id="boton-mostrar-comentarios">
+            <img id="mostrar_comentarios" onclick="ParaComentarios();return false;" alt="Mostrar Comentarios" src="img/comentarios.png" />
+        </div>
+    </div>
+    </article>
+    {% include "comentarios.html" %}
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content">
+    <article class="comunicado">
+      <h2 class="titulo-comunicado">{{ comunicado.titulo }}</h2>
+      <p>{{ comunicado.texto }}</p>
+    </article>
+  </div>
+{% endblock %}
