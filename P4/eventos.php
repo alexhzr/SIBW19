@@ -35,7 +35,7 @@ require_once  __DIR__ . "/models/Comentario.php";
 		echo $template->render(['estado' => $estado, 'mensaje' => $mensaje, 'proximosEventos' => $proximosEventos, 'tags' => $tags]);
 
 	}	else if (isset($_GET['evento'])) {
-		$evento_selecc = $evento->getById($_GET['evento']);
+		$evento_selecc = $evento->getById($_GET['evento'], "Evento");
 		$comentarios = $comentario->getComentariosEvento($_GET['evento']);
 
 		$template;
@@ -56,7 +56,7 @@ require_once  __DIR__ . "/models/Comentario.php";
 			// vuelves a recuperar evento por id
 			// hacer setVariable
 			// metodo actualiazar
-		$evento_selecc = $evento->getById($_POST['modificar_evento']);
+		$evento_selecc = $evento->getById($_POST['modificar_evento'], "Evento");
 		$template;
 		if(!empty($evento_selecc)){
 			$template = $twig->load("modificar_evento.html");
@@ -67,7 +67,7 @@ require_once  __DIR__ . "/models/Comentario.php";
 
 
 	} else if(isset($_POST['id_evento_modificado'])){
-		$evento_selecc = $evento->getById($_POST['id_evento_modificado']);
+		$evento_selecc = $evento->getById($_POST['id_evento_modificado'], "Evento");
 		$comentarios = $comentario->getComentariosEvento($_POST['id_evento_modificado']);
 
 		$template;
@@ -75,20 +75,32 @@ require_once  __DIR__ . "/models/Comentario.php";
 		if(isset($_POST['nombre']) && isset($_POST['organizador']) 
 			&& isset($_POST['fecha']) && isset($_POST['descripcion']) && isset($_POST['imagen'])){
 
-				if(!empty($evento_selecc)){		
-					$evento->setNombre($_POST['nombre']);
-					$evento->setOrganizador($_POST['organizador']);
-					$evento->setFecha($_POST['fecha']);
-					$evento->setDescripcion($_POST['descripcion']);
-					$evento->setImagen($_POST['imagen']);
-					$evento->actualizar();
+				if(!empty($evento_selecc)){	
+					//print_r($_POST['nombre']." " .$_POST['organizador']. " " .$_POST['fecha']. " " .$_POST['descripcion']." ".$_POST['imagen']);
+
+					$evento_selecc->setNombre($_POST['nombre']);
+					$evento_selecc->setOrganizador($_POST['organizador']);
+					$evento_selecc->setFecha($_POST['fecha']);
+					$evento_selecc->setDescripcion($_POST['descripcion']);
+					$evento_selecc->setImagen($_POST['imagen']);
+
+					$evento_selecc->actualizar();
 
 					$template = $twig->load("mostrar_evento.html");
 				}
 		}
 
 		echo $template->render(['evento' => $evento_selecc, 'proximosEventos' => $proximosEventos, 'comentarios' => $comentarios, 'tags' => $tags, 'tipoUsuario' => $_SESSION['tipoUsuario']]);
+		
 
+	}else if(isset($_POST['borrar_evento'])){
+		$evento_selecc = $evento->getById($_POST['borrar_evento'], "Evento");
+		$template;
+
+		if(!empty($evento_selecc)){
+			$evento_selecc->deleteById($_POST['borrar_evento']);
+			header("location:index.php");
+		}
 	}else {
 		header("location:index.php");
 	}

@@ -33,14 +33,14 @@ class Modelo {
     }
 
 
-    public function getById($id){
+    public function getById($id, $clase){
         $consulta = conexion()->prepare("SELECT *
                                                 FROM " . $this->table . "  WHERE id = :id");
         $consulta->execute(array(
             "id" => $id
         ));
         /* Fetch all of the remaining rows in the result set */
-        $resultado = $consulta->fetchObject();
+        $resultado = $consulta->fetchObject($clase);
         //conexion() = null; //cierre de conexión
         return $resultado;
     }

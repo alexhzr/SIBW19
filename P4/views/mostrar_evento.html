@@ -16,14 +16,14 @@
         <ul class="gestion-eventos">
             <li>
               <form action="eventos.php" method="POST">
-                <button class="elimina"><i class="fa fa-trash fa-2x"></i></button>
+                <button class="elimina" onclick="return confirm('¿Está seguro de que quiere borrar el evento {{ evento.nombre }}?');"><i class="fa fa-trash fa-2x"></i></button>
                 <input type="hidden" value="{{ evento.id }}" name="borrar_evento"/>
               </form>
             </li>
       
             <li>
               <form action="eventos.php" method="POST">
-                  <button class="modifica "><i class="far fa-edit fa-2x"></i></button>
+                  <button class="modifica "><i class="far fa-edit fa-2x"></i> </button>
                   <input type="hidden" value="{{ evento.id }}" name="modificar_evento"/>
               </form>
             </li>
