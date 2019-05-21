@@ -93,17 +93,19 @@ class Evento extends Modelo {
     }
 
     public function getEventosPorTag($tag) {
-      $consulta = conexion()->prepare("SELECT * FROM tiene_tag A LEFT JOIN evento B ON A.evento=B.id LEFT JOIN tags C ON A.tag=C.id WHERE A.tag=".$tag.";");
+      $consulta = conexion()->prepare("SELECT evento FROM tiene_tag A LEFT JOIN evento B ON A.evento=B.id LEFT JOIN tags C ON A.tag=C.id WHERE A.tag=".$tag.";");
+      $consulta->execute(array());
+      $idEventos = $consulta->fetchAll();
+      $eventos = array();
 
-      $result = $consulta->execute(array(
-          "evento.nombre" => $this->nombre,
-          "evento.descripcion" => $this->descripcion,
-          "evento.fecha" => $this->fecha,
-          "evento.imagen" => $this->imagen,
-          "evento.organizador" => $this->organizador
-      ));
+      for ($i = 0; $i < sizeof($idEventos); $i++) {
+        $eventos[$i] = $this->getById($idEventos[$i]['evento']);
+      }
+      
+      return $eventos;
     }
 
+    
     public function actualizar(){
 
         $consulta = conexion()->prepare("
