@@ -400,3 +400,51 @@ aside li { list-style: none; }
   padding: 1em;
   width: 45%;
 }
+
+/*######### Gestión de eventos ############*/
+.gestion-eventos {
+  list-style: none;
+}
+
+.gestion-eventos li{
+  display: inline;
+  float: right;
+}
+
+.gestion-eventos .elimina {
+  background-color: #f44336;
+}
+
+.gestion-eventos .modifica {
+  background-color: #008CBA;
+}
+
+.gestion-eventos button{  
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 35px;
+  /*margin: 8px 4px;*/
+  border-radius: 12px;
+  font-size: 12px;
+  float: right;
+}
+
+.modificar-evento ul { list-style: none; margin: 0; padding: 0; }
+.modificar-evento ul li { margin-bottom: 30px;}
+.modificar-evento i { margin: .2em 0; }
+
+.modificar-evento label { 
+  float: left; 
+  width: 200px; 
+  margin-right: 15px; 
+  text-align: right; 
+}
+
+.modificar-evento input, textarea{
+  margin-left: 20%;
+}
+
+.modificar-evento input[type=submit] {
+  margin-top: 5%;
+}
