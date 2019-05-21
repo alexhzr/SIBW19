@@ -4,6 +4,7 @@
   require_once BASE_PATH.'vendor/autoload.php';
   require_once  __DIR__ . "/models/Evento.php";
   require_once  __DIR__ . "/models/Tag.php";
+  require_once  __DIR__ . "/models/Usuario.php";
 
   $evento = new Evento();
   $tag = new Tag();

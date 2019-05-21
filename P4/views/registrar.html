@@ -3,10 +3,13 @@
 
 {% block contenido %}
     <div id="main-content-evento">
-        <form id="login-form" action="login.php" method="POST">
-            <input type="hidden" name="formularioLogin" id="formularioLogin">
+        <form id="login-form" action="registrar.php" method="POST">
+            <input type="hidden" name="formularioRegistro" id="">
+            <label for="login">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required/>
+
             <label for="login">Nombre de usuario</label>
-            <input type="text" name="login" id="login" />
+            <input type="text" name="login" id="login" required/>
 
             <label for="password">Contraseña</label>
             <input type="password" name="password" id="password" required/>

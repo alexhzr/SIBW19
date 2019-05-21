@@ -382,3 +382,21 @@ aside li { list-style: none; }
 
 .ok { background-color: #deefb1; }
 .error { background-color: #f4c1ab; }
+
+/*########## FORMULARIO LOGIN ########## */
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20em;
+}
+
+#login-form input {
+  width: 43%;
+  margin-bottom: 2em;
+}
+
+#login-form input[type=submit] {
+  padding: 1em;
+  width: 45%;
+}
