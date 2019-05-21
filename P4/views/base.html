@@ -22,8 +22,12 @@
             <a class="active" href="index.php">Inicio</a>
             <a href="eventos.php?evento=1">Evento</a>
             <a href="eventos.php?evento=1&imprimir=1">Imprimir</a>
-            {% if usuario is defined %}
-              <a href="#">Bienvenid@, {{ usuario.nombre }}</a>
+            {% if session.login is defined %}
+              {% for category in session %}
+                <a href="#">{{ category }}</a>
+              {% endfor %}
+
+              <a href="#">Bienvenid@, {{ session.nombre }}</a>
               <a id="a-logout" href="logout.php">Salir</a>
             {% else %}
               <a id="a-login" href="login.php">Login</a>
