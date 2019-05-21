@@ -10,6 +10,11 @@
 
     <p>{{ evento.descripcion }}</p>
 
+    {% if tipoUsuario == 2 %}
+      <button class="btn"><i class="fa fa-trash"></i> Trash</button>
+
+    {% endif %}
+
     <div id="compartir">
         <p>Compartir</p>
         <a href="evento_imprimir.html"><img src="img/redes/imprimir.png"></a>
