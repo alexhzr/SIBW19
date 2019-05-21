@@ -21,8 +21,8 @@
 
   ));
   
-  if (isset($_SESSION['usuario']))
-    $twig->addGlobal('session', $_SESSION);
+  
+  
 
 
 ?>

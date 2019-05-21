@@ -11,8 +11,21 @@
             $usuarios = new Usuario();
             $resultado = $usuarios->existeUsuario($_POST['login'], $_POST['password']);
 
+            // si existe el usuario y tiene su contraseña correcta
+            if (is_a($resultado, "Usuario")) {
+                session_start();
+                
+                $_SESSION['login'] = $resultado->getLogin();
+                $_SESSION['nombre'] = $resultado->getNombre();
+                $_SESSION['tipoUsuario'] = $resultado->getTipoUsuario();
+
+                //$twig->addGlobal('session', $_SESSION);
+                
+                $template = $twig->load("error-success.html");
+                echo $template->render(["estado"=>"ok", "mensaje"=>"Login correcto", "usuario"=>$_SESSION]);
+
             // no existe ese usuario
-            if ($resultado->getTipoUsuario() == 0) {
+            } else if ($resultado->getTipoUsuario() == 0) {
                 $template = $twig->load("error-success.html");
                 echo $template->render(["estado"=>"error", "mensaje"=>"Usuario no existe"]);
 
@@ -22,17 +35,7 @@
                 echo $template->render(["estado"=>"error", "mensaje"=>"Contraseña errónea"]);
             
             // login correcto
-            } else {
-                session_start();
-                
-                $_SESSION['login'] = $resultado->getLogin();
-                $_SESSION['nombre'] = $resultado->getNombre();
-                $_SESSION['tipoUsuario'] = $resultado->getTipoUsuario();
-
-                print_r($_SESSION);
-                $template = $twig->load("error-success.html");
-                echo $template->render(["estado"=>"ok", "mensaje"=>"Login correcto"]);
-            }
+            } 
         } else {
             $template = $twig->load("error-success.html");
             echo $template->render(["estado"=>"error", "mensaje"=>"Revisa los datos y vuelve a intentarlo"]);
