@@ -143,6 +143,36 @@ class Evento extends Modelo {
         //return $resultado; //true if OK.
     }
 
+    public function subirImagen($imagen){
+        print_r($imagen);
+        if(!empty($imagen)){
+            $errors= array();
+            $file_name = $imagen['name'];
+            $file_size =$imagen['size'];
+            $file_tmp =$imagen['tmp_name'];
+            $file_type=$imagen['type'];
+            $file_ext=strtolower(end(explode('.',$imagen['name'])));
+            
+            $extensions= array("jpeg","jpg","png","JPG");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="Extensión de archivo no adecuada, formatos adecuados: jpeg, jpg y png";
+            }
+            
+            if($file_size > 2097152){
+               $errors[]='El archivo no debe superar los 2MB de tamaño';
+            }
+            
+            if(empty($errors)==true){
+               move_uploaded_file($file_tmp,"img/".$file_name);
+               echo "Success";
+            }else{
+               print_r($errors);
+               echo "ERROR";
+            }
+        }
+    }
+
 
 
 

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content-evento">
+    <article class="detalle-evento">
+    <p class="titulo-evento">Añadir evento</p>
+
+    <section class="modificar-evento">
+            <form method="post" action="eventos.php" enctype="multipart/form-data">
+                    <ul>
+                      <li><label>Nombre</label> <input type="text" value="" name="nombre"/></li>
+                      <li><label>Organizador</label> <input type="text" value="" name="organizador"/></li>
+                      <li><label>Fecha</label> <input type="date" value="" name="fecha"/></li>
+                      <li><label>Descripción</label> <textarea name="descripcion"></textarea></li>
+                      <li><label>Imagen principal</label> <input type="file" value="" name="imagen"/></li>
+                      <input type="hidden" value="" name="id_evento_creado"/>
+                      <li><input type="submit" value="Añadir evento"/></li>
+                    </ul>
+                </form>
+    </section>
+
+    </article>
+  </div>
+{% endblock %}

@@ -12,12 +12,12 @@
             $resultado = $usuarios->existeUsuario($_POST['login'], $_POST['password']);
 
             // no existe ese usuario
-            if ($resultado->getTipoUsuario() == 0) {
+            if ($resultado == 0) {
                 $template = $twig->load("error-success.html");
                 echo $template->render(["estado"=>"error", "mensaje"=>"Usuario no existe"]);
 
             // contraseña incorrecta
-            } else if ($resultado->getTipoUsuario() == -1) {
+            } else if ($resultado == -1) {
                 $template = $twig->load("error-success.html");
                 echo $template->render(["estado"=>"error", "mensaje"=>"Contraseña errónea"]);
             
@@ -29,7 +29,7 @@
                 $_SESSION['nombre'] = $resultado->getNombre();
                 $_SESSION['tipoUsuario'] = $resultado->getTipoUsuario();
 
-                print_r($_SESSION);
+                //print_r($_SESSION);
                 $template = $twig->load("error-success.html");
                 echo $template->render(["estado"=>"ok", "mensaje"=>"Login correcto"]);
             }

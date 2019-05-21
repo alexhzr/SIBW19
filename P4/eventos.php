@@ -101,6 +101,30 @@ require_once  __DIR__ . "/models/Comentario.php";
 			$evento_selecc->deleteById($_POST['borrar_evento']);
 			header("location:index.php");
 		}
+	}else if(isset($_GET['add_evento'])){
+		$template;
+		$template = $twig->load("add_evento.html");
+		echo $template->render(['proximosEventos' => $proximosEventos, 'tags' => $tags, 'tipoUsuario' => $_SESSION['tipoUsuario']]);
+
+	}else if(isset($_POST['id_evento_creado'])){
+		//$evento_new = new Evento();
+		$template;
+		
+		if(isset($_POST['nombre']) && isset($_POST['organizador']) 
+			&& isset($_POST['fecha']) && isset($_POST['descripcion']) && isset($_FILES['imagen'])){
+				$evento->setNombre($_POST['nombre']);
+				$evento->setOrganizador($_POST['organizador']);
+				$evento->setFecha($_POST['fecha']);
+				$evento->setDescripcion($_POST['descripcion']);
+				$evento->setImagen("img/".$_FILES['imagen']['name']);
+				$evento->subirImagen($_FILES['imagen']);
+				$evento->guardar();
+
+				$template = $twig->load("mostrar_evento.html");
+				//header("location:index.php");
+		}
+
+		echo $template->render(['evento' => $evento, 'proximosEventos' => $proximosEventos, 'tags' => $tags, 'comentarios' => $comentario, 'tipoUsuario' => $_SESSION['tipoUsuario']]);
 	}else {
 		header("location:index.php");
 	}
