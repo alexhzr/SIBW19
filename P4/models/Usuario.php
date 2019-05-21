@@ -29,14 +29,24 @@ class Usuario extends Modelo {
 
 
     public function existeUsuario($login, $password) {
-        $consulta = conexion()->prepare("SELECT * FROM ".$this->table." WHERE login=:login;");
-        $result = $consulta->execute(array("login" => $login));
-        $resultado = $consulta->fetchObject();
+        $consulta = conexion()->prepare("SELECT * FROM ".$this->table." WHERE login = :login");
+        $consulta->execute(array(":login" => $login));
+        $resultado = $consulta->fetchObject("Usuario");
 
-        print($resultado);
-        print_r($resultado);
-        print("estoy en el metodo");
-        //if (password_verify($password, ))
+        if (!empty($resultado)) {
+            if (password_verify($password, $resultado->getPassword()) )
+                return $resultado;
+
+            // contraseña errónea
+            else {
+                return $this->getByColumn("tipoUsuario", "-1");
+            }
+        
+        // no existe el usuario
+        } else {
+            return $this->getByColumn("tipoUsuario", "-2");
+        }
+        
     }
 
     public function guardar(){

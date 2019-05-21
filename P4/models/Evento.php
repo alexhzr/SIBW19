@@ -107,29 +107,40 @@ class Evento extends Modelo {
 
     
     public function actualizar(){
-
         $consulta = conexion()->prepare("
             UPDATE " . $this->table . "
             SET
-                nombre = :nombre,
-                descripcion = :descripcion,
-                imagen = :imagen,
-                fecha = :fecha,
-                organizador = :organizador
+                nombre = ?,
+                descripcion = ?,
+                imagen = ?,
+                fecha = ?,
+                organizador = ?,
 
-            WHERE id = :id
+            WHERE id = ?
         ");
 
-        $resultado = $consulta->execute(array(
+        $consulta->bindParam(1, $this->nombre);
+        $consulta->bindParam(2, $this->descripcion);
+        $consulta->bindParam(3, $this->imagen);
+        $consulta->bindParam(4, $this->fecha);
+        $consulta->bindParam(5, $this->organizador);
+        $consulta->bindParam(6, $this->id);
+       
+        // Excecute
+        $resultado = $consulta->execute();
+        
+        /*$resultado = $consulta->execute(array(
           "nombre" => $this->nombre,
           "descripcion" => $this->descripcion,
           "fecha" => $this->fecha,
           "imagen" => $this->imagen,
           "organizador" => $this->organizador,
           "id" => $this->id
-        ));
+        ));*/
 
-        return $resultado; //true if OK.
+        
+        print($resultado);
+        //return $resultado; //true if OK.
     }
 
 

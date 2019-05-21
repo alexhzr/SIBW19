@@ -19,7 +19,10 @@
 		 'strict_variables'	=>	true,
 			   'autoescape'	=>	true,
 
-	));
+  ));
+  
+  if (isset($_SESSION['usuario']))
+    $twig->addGlobal('session', $_SESSION);
 
 
 ?>

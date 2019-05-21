@@ -2,14 +2,8 @@
   require_once("conexion.php");
 
 class Modelo {
-   protected $table = "";
-    //protected $conexion;
+    protected $table = "";
     protected $id;
-
-    /*public function __construct($conexion) {
-		conexion() = $conexion;
-
-  }*/
 
     public function __construct() {}
 
@@ -21,7 +15,7 @@ class Modelo {
         $this->id = $id;
     }
 
-    public function getAll(){
+    public function getAll() {
 
         $consulta = conexion()->prepare("SELECT * FROM " . $this->table);
         $consulta->execute();
@@ -39,9 +33,9 @@ class Modelo {
         $consulta->execute(array(
             "id" => $id
         ));
-        /* Fetch all of the remaining rows in the result set */
+        
         $resultado = $consulta->fetchObject();
-        //conexion() = null; //cierre de conexión
+  
         return $resultado;
     }
 
