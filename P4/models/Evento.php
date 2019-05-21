@@ -8,6 +8,7 @@ class Evento extends Modelo {
     private $descripcion;
     private $fecha;
     private $imagen;
+    private $organizador;
 
     /*public function __construct($conexion) {
 		parent::__construct($conexion);
@@ -52,15 +53,24 @@ class Evento extends Modelo {
         $this->imagen = $imagen;
     }
 
+    public function getOrganizador() {
+        return $this->organizador;
+    }
+
+    public function setOrganizador($organizador) {
+        $this->organizador = $organizador;
+    }
+
     public function guardar(){
 
-        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (nombre, descripcion, fecha, imagen)
-                                        VALUES (:nombre, :descripcion, :fecha, :imagen)");
+        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (nombre, descripcion, fecha, imagen, organizador)
+                                        VALUES (:nombre, :descripcion, :fecha, :imagen, :organizador)");
         $result = $consulta->execute(array(
             "nombre" => $this->nombre,
             "descripcion" => $this->descripcion,
             "fecha" => $this->fecha,
-            "imagen" => $this->imagen
+            "imagen" => $this->imagen,
+            "organizador" => $this->organizador
         ));
 //        conexion() = null;
 
@@ -74,7 +84,8 @@ class Evento extends Modelo {
           "nombre" => $this->nombre,
           "descripcion" => $this->descripcion,
           "fecha" => $this->fecha,
-          "imagen" => $this->imagen
+          "imagen" => $this->imagen,
+          "organizador" => $this->organizador
       ));
       //conexion() = null;
       $result = $consulta->fetchAll();
@@ -103,7 +114,8 @@ class Evento extends Modelo {
                 nombre = :nombre,
                 descripcion = :descripcion,
                 imagen = :imagen,
-                fecha = :fecha
+                fecha = :fecha,
+                organizador = :organizador
 
             WHERE id = :id
         ");
@@ -112,9 +124,10 @@ class Evento extends Modelo {
           "nombre" => $this->nombre,
           "descripcion" => $this->descripcion,
           "fecha" => $this->fecha,
-          "imagen" => $this->imagen
+          "imagen" => $this->imagen,
+          "organizador" => $this->organizador,
+          "id" => $this->id
         ));
-//        conexion() = null;
 
         return $resultado; //true if OK.
     }

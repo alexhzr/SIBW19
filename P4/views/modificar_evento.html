@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content-evento">
+    <article class="detalle-evento">
+    <p class="titulo-evento">Modificando {{ evento.nombre }}</p>
+
+    <section class="modificar-evento">
+            <form method="post" action="eventos.php">
+                    <ul>
+                      <li><label>Nombre</label> <input type="text" value="{{ evento.nombre }}" name="nombre"/></li>
+                      <li><label>Organizador</label> <input type="text" value="{{ evento.organizador }}" name="organizador"/></li>
+                      <li><label>Fecha</label> <input type="date" value="{{ evento.fecha }}" name="fecha"/></li>
+                      <li><label>Descripción</label> <textarea name="descripcion">{{ evento.descripcion }}</textarea></li>
+                      <li><label>Ruta de la nueva imagen</label> <input type="text" value="{{ evento.imagen }}" name="imagen"/></li>
+                      <input type="hidden" value="{{ evento.id }}" name="id_evento_modificado"/>
+                      <li><input type="submit" value="Modificar evento"/></li>
+                    </ul>
+                </form>
+    </section>
+
+    </article>
+  </div>
+{% endblock %}

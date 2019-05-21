@@ -11,10 +11,26 @@
     <p>{{ evento.descripcion }}</p>
 
     {% if tipoUsuario == 2 %}
-      <button class="btn"><i class="fa fa-trash"></i> Trash</button>
 
+    <section>
+        <ul class="gestion-eventos">
+            <li>
+              <form action="eventos.php" method="POST">
+                <button class="elimina"><i class="fa fa-trash fa-2x"></i></button>
+                <input type="hidden" value="{{ evento.id }}" name="borrar_evento"/>
+              </form>
+            </li>
+      
+            <li>
+              <form action="eventos.php" method="POST">
+                  <button class="modifica "><i class="far fa-edit fa-2x"></i></button>
+                  <input type="hidden" value="{{ evento.id }}" name="modificar_evento"/>
+              </form>
+            </li>
+        </ul>
+    </section>
+    
     {% endif %}
-
     <div id="compartir">
         <p>Compartir</p>
         <a href="evento_imprimir.html"><img src="img/redes/imprimir.png"></a>
