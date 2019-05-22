@@ -24,7 +24,7 @@
                 echo $template->render(["estado"=>"ok", "mensaje"=>"Login correcto", "session"=>$_SESSION]);
 
             // no existe ese usuario
-            if ($resultado == 0) {
+            } if ($resultado == 0) {
                 $template = $twig->load("error-success.html");
                 echo $template->render(["estado"=>"error", "mensaje"=>"Usuario no existe"]);
 
