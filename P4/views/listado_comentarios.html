@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content">
+    <article class="detalle-evento">
+    <p class="titulo-evento">Listado de comentarios</p>
+
+    <ul>
+        {% for comentario in comentarios %}
+        <li>({{ comentario.autor }}) - {{ comentario.texto }}
+            <form action="comentarios.php" method="POST">
+              <button class="elimina" onclick="return confirm('¿Está seguro de que quiere borrar el comentario?');"><i class="fa fa-trash fa-2x"></i></button>
+              <input type="hidden" value="{{ comentario.id }}" name="id_borrar"/>
+            </form>
+            
+            <form action="comentarios.php" method="POST">
+                <button class="modifica"><i class="far fa-edit fa-2x"></i> </button>
+                <input type="hidden" value="{{ comentario.id }}" name="id_modificar"/>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

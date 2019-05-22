@@ -1,6 +1,7 @@
 <?php
 require_once  __DIR__ . "/Modelo.php";
 require_once("conexion.php");
+require_once("Evento.php");
 
 class Comentario extends Modelo {
 
@@ -11,6 +12,7 @@ class Comentario extends Modelo {
     private $fecha;
     private $ip;
     private $avatar;
+    private $modificado;
 
 
     public function __construct() {
@@ -26,17 +28,17 @@ class Comentario extends Modelo {
       $this->fecha = $fecha;
       $this->ip = $ip;
       $this->avatar = $avatar;
+      $this->modificado = 0;
 
     }
 
+    public function getModificado() { return $this->modificado; }
+    public function setModificado() { $this->modificado = 1; }
 
-    public function getNombre() {
+    public function getEvento() {
         return $this->evento;
     }
 
-    public function setNombre($nombre) {
-        $this->evento = $nombre;
-    }
 
     public function getTexto() {
         return $this->texto;
@@ -58,7 +60,7 @@ class Comentario extends Modelo {
         return $this->email;
     }
 
-    public function setEmail($Email) {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
@@ -119,9 +121,7 @@ class Comentario extends Modelo {
                 autor = :autor,
                 email = :email,
                 texto = :texto,
-                fecha = :fecha,
-                evento = :evento,
-                ip = :ip
+                modificado = 1
 
             WHERE id = :id
         ");
@@ -130,9 +130,7 @@ class Comentario extends Modelo {
           "autor" => $this->autor,
           "email" => $this->email,
           "texto" => $this->texto,
-          "fecha" => $this->fecha,
-          "evento" => $this->evento,
-          "ip" => $this->ip
+          "id" => $this->id
         ));
 
         return $resultado; //true if OK.

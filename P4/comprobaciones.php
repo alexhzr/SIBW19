@@ -36,4 +36,15 @@
         else
             return false;
     }
+
+    // Comprobación para el formulario de modificación de comentarios.php
+    function comprobar_valores_mod_comentario($array) {
+        if (isset($array['id']) && isset($array['autor']) && isset($array['email']) && isset($array['texto'])) 
+            if (!empty($array['id']) && !empty($array['autor']) && !empty($array['email']) && !empty($array['texto'])) 
+                return true;
+            else
+                return false;
+        else
+            return false;
+    }
 ?>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content">
+    <article class="detalle-evento">
+    <p class="titulo-evento">Modificando comentario</p>
+
+    <section class="usuario-evento">
+        <form method="post" action="comentarios.php">
+            <input type="hidden" name="modificarComentarioSubmit">
+            <input type="hidden" name="id" value="{{ comentario.id }}">
+
+            <label for="nombre">Autor</label>
+            <input type="text" name="autor" value="{{ comentario.autor }}" required>
+
+            <label for="login">Email</label>
+            <input type="email" name="email" value="{{ comentario.email }}" required>
+
+            <label for="password">Texto</label>
+            <textarea name="texto" required>{{ comentario.texto }} </textarea>
+
+            <input type="submit" value="Modificar">
+    </section>
+    
+    </article>
+  </div>
+{% endblock %}

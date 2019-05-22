@@ -5,6 +5,7 @@
   require_once  __DIR__ . "/models/Evento.php";
   require_once  __DIR__ . "/models/Tag.php";
   require_once  __DIR__ . "/models/Usuario.php";
+  require_once  __DIR__ . "/models/Comentario.php";
 
   $evento = new Evento();
   $tag = new Tag();

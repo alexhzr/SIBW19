@@ -26,7 +26,11 @@
             <a href="eventos.php?evento=1">Evento</a>
             <a href="eventos.php?evento=1&imprimir=1">Imprimir</a>
             <!-- comprobamos antes si es gestor-->
-            <a href="eventos.php?add_evento">Añadir evento</a>
+            {% if session.tipoUsuario is defined %}
+              {% if session.tipoUsuario >= 2 %}
+                <a href="eventos.php?add_evento">Añadir evento</a>
+              {% endif %}
+            {% endif %}
             {% if session.login is defined %}
               <a href="#">Bienvenid@, {{ session.nombre }}</a>
               <a href="panel_de_control.php">Panel del control</a>
