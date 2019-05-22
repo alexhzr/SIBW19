@@ -25,6 +25,8 @@
             <a class="active" href="index.php">Inicio</a>
             <a href="eventos.php?evento=1">Evento</a>
             <a href="eventos.php?evento=1&imprimir=1">Imprimir</a>
+            <!-- comprobamos antes si es gestor-->
+            <a href="eventos.php?add_evento">Añadir evento</a>
             {% if session.login is defined %}
               <a href="#">Bienvenid@, {{ session.nombre }}</a>
               <a href="panel_de_control.php">Panel del control</a>

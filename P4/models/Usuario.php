@@ -39,12 +39,12 @@ class Usuario extends Modelo {
 
             // contraseña errónea
             else {
-                return $this->getByColumn("tipoUsuario", "-1");
+                return -1;
             }
         
         // no existe el usuario
         } else {
-            return $this->getByColumn("tipoUsuario", "-2");
+            return 0;
         }
         
     }
