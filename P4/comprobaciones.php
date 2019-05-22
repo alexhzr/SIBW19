@@ -27,7 +27,7 @@
 
     // Comprobación para el formulario de modificación en modificar_usuario.php
     function comprobar_valores_mod_usuario($array) {
-        if (isset($array['id']) && isset($array['nombre']) && isset($array['login']) && isset($array['tipoUsuario'])) 
+        if (isset($array['id']) && isset($array['nombre']) && isset($array['login'])) 
             if (!empty($array['login']) && !empty($array['nombre']) && !empty($array['id'])) 
                 return true;
 

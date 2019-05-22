@@ -10,7 +10,7 @@
         $template = $twig->load("modificar_datos.html");
 
         // si no eres admin, sólo te modificas a ti
-        if ($_SESSION['tipoUsuario'] < 3) 
+        if ($_SESSION['tipoUsuario'] < 3 && !isset($_POST['modificarDatosSubmit'])) 
             echo $template->render(['usuario' => $_SESSION, 'proximosEventos' => $proximosEventos, 'tags' => $tags]);
         
         else {
@@ -39,6 +39,8 @@
 
                     if ($usuario_a_modificar->actualizar()) {
                         $template = $twig->load("error-success.html");
+                        $_SESSION['nombre'] = $_POST['nombre'];
+                        $_SESSION['login'] = $_POST['login'];                        
                         echo $template->render(['estado' => "ok", 'mensaje' => "Datos modificados correctamente."]);
                     } else {
                         $template = $twig->load("error-success.html");

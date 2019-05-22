@@ -23,7 +23,7 @@
 
                     $comentario_modificar->setAutor($_POST['autor']);
                     $comentario_modificar->setEmail($_POST['email']);
-                    $comentario_modificar->setTexto($_POST['texto']);
+                    $comentario_modificar->setTexto($_POST['texto']." - 'Comentario modificado por el moderador.'");
 
                     if ($comentario_modificar->actualizar()) {
                         header("Location: comentarios.php");

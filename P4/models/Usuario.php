@@ -25,7 +25,7 @@ class Usuario extends Modelo {
     public function setTipoUsuario($tipoUsuario) { $this->tipoUsuario = $tipoUsuario; }
 
     public function getPassword() { return $this->password; }
-    public function setPassword() { $this->password = $password; }
+    public function setPassword($password) { $this->password = $password; }
 
 
     public function existeUsuario($login, $password) {
@@ -49,14 +49,27 @@ class Usuario extends Modelo {
         
     }
 
+    public function nickLibre($login) {
+        $consulta = conexion()->prepare("SELECT * FROM ".$this->table." WHERE login = :login");
+        $consulta->execute(array(":login" => $login));
+        $resultado = $consulta->fetchObject("Usuario");
+
+        if (empty($resultado)) 
+            return true;
+        
+        // ya existe el usuario
+        else 
+            return false;
+        
+    }
+
     public function guardar(){
 
-        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (nombre, login, password, tipoUsuario) VALUES (:nombre, :login, :password, :tipoUsuario)");
+        $consulta = conexion()->prepare("INSERT INTO " . $this->table . " (nombre, login, password) VALUES (:nombre, :login, :password)");
         $result = $consulta->execute(array(
             "nombre" => $this->nombre,
             "login" => $this->login,
-            "password" => password_hash($this->password, PASSWORD_DEFAULT),
-            "tipoUsuario" => $this->tipoUsuario
+            "password" => password_hash($this->password, PASSWORD_DEFAULT)
         ));
 
         return $result; //true if OK.

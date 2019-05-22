@@ -29,6 +29,8 @@
                     <option value="2">Gestor de contenido</option>
                     <option value="3">Administrador</option>
                 </select>
+            {% else %}
+                <input type="hidden" name="tipoUsuario" value='0'>
             {% endif %}
 
             <input type="submit" value="Modificar">
