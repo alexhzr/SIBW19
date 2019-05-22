@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <div id="main-content">
+    <article class="detalle-evento">
+    <p class="titulo-evento">Listado de usuarios</p>
+
+    <ul>
+        {% for usuario in usuarios %}
+        <li>{{ usuario.nombre }} ({{ usuario.login }})
+            <form action="modificar_datos.php" method="POST">
+            <button class="elimina" onclick="return confirm('¿Está seguro de que quiere borrar al usuario {{ usuario.nombre }}?');"><i class="fa fa-trash fa-2x"></i></button>
+            <input type="hidden" value="{{ usuario.id }}" name="id_borrar"/>
+            
+            <form action="modificar_datos.php" method="POST">
+                <button class="modifica"><i class="far fa-edit fa-2x"></i> </button>
+                <input type="hidden" value="{{ usuario.id }}" name="id_modificar"/>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

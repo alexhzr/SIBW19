@@ -21,8 +21,12 @@
 
   ));
   
-  
-  
+
+  session_start();
+
+  $twig->addGlobal('session', $_SESSION);
+
+    
 
 
 ?>

@@ -55,7 +55,7 @@ class Usuario extends Modelo {
         $result = $consulta->execute(array(
             "nombre" => $this->nombre,
             "login" => $this->login,
-            "password" => password_hash($this->password),
+            "password" => password_hash($this->password, PASSWORD_DEFAULT),
             "tipoUsuario" => $this->tipoUsuario
         ));
 
@@ -78,8 +78,9 @@ class Usuario extends Modelo {
         $resultado = $consulta->execute(array(
             "nombre" => $this->nombre,
             "login" => $this->login,
-            "password" => password_hash($this->password),
-            "tipoUsuario" => $this->tipoUsuario
+            "password" => password_hash($this->password, PASSWORD_DEFAULT),
+            "tipoUsuario" => $this->tipoUsuario,
+            "id" => $this->id
         ));
 
 

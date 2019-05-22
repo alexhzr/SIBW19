@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block contenido %}
+  <div id="main-content">
+    <ul>
+        {% if session.tipoUsuario >= 0 %}
+            <li><a href="modificar_datos.php">Modificar mis datos</a></li>
+        {% endif %}
+
+        {% if session.tipoUsuario >= 1 %}
+            <li><a href="comentarios.php">Ver/editar comentarios</a></li>
+        {% endif %}
+
+        {% if session.tipoUsuario >= 2 %}
+            <li><a href="eventos.php">Ver/editar eventos</a></li>
+        {% endif %}
+
+        {% if session.tipoUsuario == 3 %}
+            <li><a href="modificar_datos.php">Ver/editar usuarios</a></li>
+        {% endif %}
+    </ul>
+  </div>
+{% endblock %}
