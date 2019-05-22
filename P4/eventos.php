@@ -5,11 +5,11 @@ require_once  __DIR__ . "/models/Comentario.php";
 	$evento = new Evento();
 	$comentario = new Comentario();
 
-	session_start();
+	
 	$_SESSION['tipoUsuario'] = 2;
 	
 	if (isset($_GET['imprimir'])) {
-		$evento_selecc = $evento->getById($_GET['evento']);
+		$evento_selecc = $evento->getById($_GET['evento'], "Evento");
 
 		$template = $twig->load("evento_imprimir.html");
 		echo $template->render(['evento' => $evento_selecc]);
